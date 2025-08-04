@@ -1,3 +1,10 @@
+# Migração inicial do banco de dados (Supabase)
+
+O script de criação das tabelas está disponível em:
+
+`prisma/init.sql`
+
+Para futuras migrações ou restauração do banco, execute o conteúdo desse arquivo no painel do Supabase (SQL Editor).
 
 # Barber SaaS
 

@@ -48,9 +48,16 @@ export function CadastroBarbeariaPageClient() {
     resolver: zodResolver(cadastroBarbeariaSchema),
   });
 
+  /**
+   * Persiste os dados do cadastro na tabela 'barbearia' do Supabase.
+   * Garante que o usuário está autenticado via Google (NextAuth).
+   */
   async function onSubmit(data: CadastroBarbeariaData) {
-    if (!session?.user?.email) return;
-    const { error } = await supabase.from("barbearias").insert({
+    if (!session?.user?.email) {
+      alert("Você precisa estar logado para cadastrar sua barbearia.");
+      return;
+    }
+    const { error } = await supabase.from("barbearia").insert({
       ...data,
       usuario: session.user.email,
       created_at: new Date().toISOString(),
